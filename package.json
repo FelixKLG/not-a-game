@@ -18,7 +18,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.4",
-    "@tanstack/router-devtools": "^1.26.12",
     "@tanstack/router-vite-plugin": "^1.26.10",
     "@tauri-apps/cli": ">=2.0.0-beta.0",
     "@types/react": "^18.2.15",

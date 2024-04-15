@@ -16,15 +16,57 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const AboutLazyImport = createFileRoute('/about')()
+const WinLazyImport = createFileRoute('/win')()
+const TrustLazyImport = createFileRoute('/trust')()
+const TimerLazyImport = createFileRoute('/timer')()
+const SeriouslyLazyImport = createFileRoute('/seriously')()
+const RecoveryLazyImport = createFileRoute('/recovery')()
+const ProperlyLazyImport = createFileRoute('/properly')()
+const ErrorLazyImport = createFileRoute('/error')()
+const CloseLazyImport = createFileRoute('/close')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
+const WinLazyRoute = WinLazyImport.update({
+  path: '/win',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/win.lazy').then((d) => d.Route))
+
+const TrustLazyRoute = TrustLazyImport.update({
+  path: '/trust',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/trust.lazy').then((d) => d.Route))
+
+const TimerLazyRoute = TimerLazyImport.update({
+  path: '/timer',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/timer.lazy').then((d) => d.Route))
+
+const SeriouslyLazyRoute = SeriouslyLazyImport.update({
+  path: '/seriously',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/seriously.lazy').then((d) => d.Route))
+
+const RecoveryLazyRoute = RecoveryLazyImport.update({
+  path: '/recovery',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/recovery.lazy').then((d) => d.Route))
+
+const ProperlyLazyRoute = ProperlyLazyImport.update({
+  path: '/properly',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/properly.lazy').then((d) => d.Route))
+
+const ErrorLazyRoute = ErrorLazyImport.update({
+  path: '/error',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/error.lazy').then((d) => d.Route))
+
+const CloseLazyRoute = CloseLazyImport.update({
+  path: '/close',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/close.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -39,8 +81,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      preLoaderRoute: typeof AboutLazyImport
+    '/close': {
+      preLoaderRoute: typeof CloseLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/error': {
+      preLoaderRoute: typeof ErrorLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/properly': {
+      preLoaderRoute: typeof ProperlyLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/recovery': {
+      preLoaderRoute: typeof RecoveryLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/seriously': {
+      preLoaderRoute: typeof SeriouslyLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/timer': {
+      preLoaderRoute: typeof TimerLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/trust': {
+      preLoaderRoute: typeof TrustLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/win': {
+      preLoaderRoute: typeof WinLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -48,6 +118,16 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexLazyRoute, AboutLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexLazyRoute,
+  CloseLazyRoute,
+  ErrorLazyRoute,
+  ProperlyLazyRoute,
+  RecoveryLazyRoute,
+  SeriouslyLazyRoute,
+  TimerLazyRoute,
+  TrustLazyRoute,
+  WinLazyRoute,
+])
 
 /* prettier-ignore-end */
