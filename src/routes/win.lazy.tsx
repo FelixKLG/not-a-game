@@ -6,8 +6,14 @@ export const Route = createLazyFileRoute("/win")({
 });
 
 function About() {
-    const firstLoadTime =
+    const firstLoadTimeString =
         localStorage.getItem("time") ?? new Date().toISOString();
+
+    const firstLoadTime = new Date(Date.parse(firstLoadTimeString));
+
+    const timeNow = new Date();
+
+    const timePlayed = (timeNow.getTime() - firstLoadTime.getTime()) / 1000;
 
     useEffect(() => {
         new Audio("/win.mp3").play();
@@ -29,11 +35,7 @@ function About() {
                 <img src="win.gif" alt="rick roll" className="max-w-72" />
             </div>
             <h2 className="text-center">
-                Time Wasted:{" "}
-                {Math.floor(
-                    (new Date() - new Date(Date.parse(firstLoadTime))) / 1000,
-                )}{" "}
-                Seconds
+                Time Wasted: {Math.floor(timePlayed)} Seconds
                 <br />
                 <span>(This is your score)</span>
             </h2>
